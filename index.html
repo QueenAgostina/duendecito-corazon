@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hola Duendecito</title>
+  <style>
+    body { margin:0; padding:0; background:#fff;
+      display:flex; justify-content:center; align-items:center;
+      height:100vh; overflow:hidden; font-family:sans-serif;
+    }
+    .container{position:relative;text-align:center;cursor:pointer;}
+    .heart{font-size:100px;color:red;animation:pulse 1s infinite}
+    .message{font-size:24px;color:#555;margin-top:10px}
+    .flower{position:absolute;width:30px;height:30px;
+      background:radial-gradient(circle,#f09 40%,transparent 41%);
+      border-radius:50%;z-index:0;
+    }
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.1)}100%{transform:scale(1)}}
+  </style>
+</head>
+<body>
+  <div class="container" onclick="toggleMessage()">
+    <div class="heart">❤️</div>
+    <div class="message" id="message">Hola Duendecito</div>
+  </div>
+  <script>
+    let toggled=false;
+    function toggleMessage(){
+      const m=document.getElementById('message');
+      toggled=!toggled;
+      m.textContent=toggled?'Te extraño':'Hola Duendecito';
+    }
+    for(let i=0;i<20;i++){
+      const f=document.createElement('div');
+      f.className='flower';
+      f.style.left=Math.random()*100+'vw';
+      f.style.top=Math.random()*100+'vh';
+      const cols=['pink','lightblue','lightgreen','lavender','peachpuff'];
+      f.style.background=`radial-gradient(circle,${cols[Math.floor(Math.random()*cols.length)]} 40%,transparent 41%)`;
+      document.body.appendChild(f);
+    }
+  </script>
+</body>
+</html>
